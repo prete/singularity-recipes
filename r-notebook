@@ -4,7 +4,7 @@ From: jupyter/r-notebook:04f7f60d34a6
 %post
 
      # Install seurat notebook
-     conda install -c bioconda r-seurat
+     /opt/conda/bin/conda install -c bioconda r-seurat
      pip install -U rpy2 jupyter
 
 %runscript
