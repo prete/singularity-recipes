@@ -1,0 +1,14 @@
+BootStrap: docker
+From: jupyter/r-notebook:04f7f60d34a6
+
+%post
+
+     # Install seurat notebook
+     conda install -c bioconda r-seurat
+     pip install -U rpy2 jupyter
+
+%runscript
+
+     echo "Starting notebook..."
+     echo "Open browser to localhost:8888"
+     exec /opt/conda/bin/jupyter lab --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root
