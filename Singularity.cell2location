@@ -1,7 +1,7 @@
 BootStrap: docker
-From: prete/cell2location:latest
+From: prete/cell2location:devel
 
 %runscript
      echo "Starting cell2location notebook..."
-     echo "Open browser to localhost:8888"
+     echo "Open browser to ${HOSTNAME}:8888"
      exec /opt/conda/envs/cellpymc/bin/jupyter notebook --notebook-dir=/notebooks --NotebookApp.token='cell2loc' --ip=0.0.0.0 --port=8888 --no-browser --allow-root
