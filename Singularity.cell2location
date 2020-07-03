@@ -15,10 +15,4 @@ From: prete/cell2location:devel
 %runscript
      echo "Starting cell2location notebooks..."
      echo "Open browser at http://${HOSTNAME}:8888/lab"
-     /bin/bash <<EOF
-          source activate cellpymc
-          jupyter lab --notebook-dir=/notebooks --NotebookApp.token='' --ip=0.0.0.0 --port=8888 --no-browser --allow-root
-     EOF
-
-
-#     exec bash -c "source activate cellpymc && jupyter notebook --notebook-dir=/notebooks --NotebookApp.token='cell2loc' --ip=0.0.0.0 --port=8888 --no-browser --allow-root"
+     exec /bin/bash -c "jupyter lab --notebook-dir=/notebooks --NotebookApp.token='cell2loc' --ip=0.0.0.0 --port=8888 --no-browser --allow-root"
