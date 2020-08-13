@@ -8,16 +8,20 @@ From: rocker/r-base:4.0.2
 
     # get packages
     apt-get update && apt-get install -y --no-install-recommends \
-        ca-certificates \
         wget \
-        gdebi-core
+        # rstudio dependencies 
+        libapparmor1 \
+        libedit2 \
+        libc6 \
+        psmisc \
+        rrdtool
     
     # download rstudio server package
     wget --no-verbose -O rstudio-server.deb \
         https://download2.rstudio.org/server/bionic/amd64/rstudio-server-$RSERVER_VERSION-$RSERVER_ARCH.deb
     
     # install rstudio server
-    apt-get install -f rstudio-server.deb
+    dpkg -i rstudio-server.deb
     
 #    chmod -R 777 /var/run/rstudio-server
 #    chmod -R 777 /etc/rstudio/
