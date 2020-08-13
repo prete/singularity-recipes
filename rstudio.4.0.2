@@ -2,13 +2,19 @@ BootStrap: docker
 From: rocker/r-base:4.0.2
 
 %post
-    export RSTUDIO_SERVER_PACKAGE=rstudio-server-1.3.1073-amd64.deb
+    # set RStudio Server version and architecture
+    export RSERVER_VERSION=1.3.1073
+    export RSERVER_ARCH=amd64
+
+    # get packages
     apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         wget \
         gdebi-core
-
-    wget --no-verbose -O rstudio-server.deb https://download2.rstudio.org/server/debian9/x86_64/$RSTUDIO_SERVER_PACKAGE
+    
+    # download and install package
+    wget --no-verbose -O rstudio-server.deb \
+        https://download2.rstudio.org/server/debian9/x86_64/rstudio-server-$RSERVER_VERSION-$RSERVER_ARCH.deb
     gdebi -n rstudio-server.deb
     rm -f rstudio-server.deb
     
@@ -16,4 +22,5 @@ From: rocker/r-base:4.0.2
 #    chmod -R 777 /etc/rstudio/
 #    chmod +t /var/run/rstudio-server
 
+    # apt cleanup
     rm -rf /var/lib/apt/lists/*
