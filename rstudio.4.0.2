@@ -1,7 +1,12 @@
 BootStrap: docker
-From: rocker/rstudio:4.0.2
+From: rocker/r-base:4.0.2
 
 %post
-    chmod -R 777 /var/run/
-    chmod -R 777 /etc/rstudio/
-    chmod +t /var/run/rstudio-server
+    export RSTUDIO_SERVER_PACKAGE=rstudio-server-1.3.1073-amd64.deb
+    apt-get install -y gdebi-core
+    wget https://download2.rstudio.org/server/bionic/amd64/$RSTUDIO_SERVER_PACKAGE
+    gdebi $RSTUDIO_SERVER_PACKAGE
+    rm $PACKAGE
+#    chmod -R 777 /var/run/rstudio-server
+#    chmod -R 777 /etc/rstudio/
+#    chmod +t /var/run/rstudio-server
