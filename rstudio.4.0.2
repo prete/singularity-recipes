@@ -7,8 +7,10 @@ From: rocker/r-base:4.0.2
     export RSERVER_ARCH=amd64
 
     # get packages
-    apt-get update && apt-get install -y -qq \
-        wget gdebi apt-utils \
+    DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y -qq --no-install-recommends \
+        wget gdebi \
         libapparmor1 libedit2 libc6 psmisc rrdtool \
 
     # download rstudio server package
@@ -24,5 +26,3 @@ From: rocker/r-base:4.0.2
 
     # apt cleanup
     rm -rf  rstudio-server.deb
-    apt autoremove -y && apt clean -y && apt purge -y && rm -rf /var/lib/apt/lists/*
-            
